@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Skeleton from 'react-loading-skeleton';
 
 function Products() {
   const [data, setData] = useState([])
@@ -16,7 +17,8 @@ function Products() {
         console.log(filter)
       }
       return () => {
-        componentMounted = false;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        componentMounted = false
       }
     }
     getProducts();
@@ -25,7 +27,18 @@ function Products() {
   const Loading = () => {
     return (
       <>
-        Loading....
+        <div className="col-md-3">
+          <Skeleton height={350} />
+        </div>
+        <div className="col-md-3">
+          <Skeleton height={350} />
+        </div>
+        <div className="col-md-3">
+          <Skeleton height={350} />
+        </div>
+        <div className="col-md-3">
+          <Skeleton height={350} />
+        </div>
       </>
     )
   }
@@ -43,13 +56,13 @@ function Products() {
         {filter.map((product) => {
           return (
             <>
-              <div key={product.id} className="col-md-3">
-                <div className="card">
-                  <img src={product.image} className="card-img-top" alt={product.title} />
+              <div className="col-md-3 mb-4">
+                <div key={product.id} className="card h-100 text-center p-4">
+                  <img src={product.image} className="card-img-top" alt={product.title} height="250px" />
                   <div className="card-body">
-                    <h5 className="card-title">{product.title}</h5>
-                    <p className="card-text">${product.price}</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                    <h5 className="card-title mb-0">{product.title.substring(0, 12)}...</h5>
+                    <p className="card-text lead fw-bold">${product.price}</p>
+                    <a href="/" className="btn btn-outline-dark">Buy Now</a>
                   </div>
                 </div>
               </div>
