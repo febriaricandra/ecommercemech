@@ -15,6 +15,7 @@ function Products() {
         setFilter(await response.json())
         setLoading(false)
         console.log(filter)
+        console.log(setData)
       }
       return () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,15 +44,20 @@ function Products() {
     )
   }
 
+  const filterProducts = (cat) =>{
+    const updatedList = data.filter((x) => x.category === cat);
+    setFilter(updatedList)
+  }
+
   const ShowProducts = () => {
     return (
       <>
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
-          <button className="btn btn-outline-dark me-2"> All </button>
-          <button className="btn btn-outline-dark me-2"> Men's Clothes </button>
-          <button className="btn btn-outline-dark me-2"> Women's Clothes </button>
-          <button className="btn btn-outline-dark me-2"> Jewelry </button>
-          <button className="btn btn-outline-dark me-2"> Electronic </button>
+          <button className="btn btn-outline-dark me-2" onClick={filterProducts(data)}> All </button>
+          <button className="btn btn-outline-dark me-2" onClick={filterProducts('men\'s clothing')}> Men's Clothes </button>
+          <button className="btn btn-outline-dark me-2" onClick={filterProducts('women\'s clothing')}> Women's Clothes </button>
+          <button className="btn btn-outline-dark me-2" onClick={filterProducts('jewelery')}> Jewelry </button>
+          <button className="btn btn-outline-dark me-2" onClick={filterProducts('electronics')}> Electronic </button>
         </div>
         {filter.map((product) => {
           return (
