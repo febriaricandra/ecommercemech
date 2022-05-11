@@ -10,3 +10,5 @@ latihan membuat onlinestore dengan react-redux react-hooks react-router dan boot
 - Products
 - Login
 - Contact
+
+![image info](./public/assets/ecomm.PNG)
